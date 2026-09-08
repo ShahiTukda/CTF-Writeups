@@ -23,9 +23,13 @@ Since functions take priority, we don't need a binary on disk. We can just appen
 
 
 flag_checker() {
+
     echo "Type the flag"
+    
     read flag
+    
     echo $flag
+    
 }
 
 
