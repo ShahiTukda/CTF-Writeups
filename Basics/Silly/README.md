@@ -1,3 +1,6 @@
+## BASH FUNCTION HIJACKING 
+
+
 In this challenge, the target stopped leaving `read` permissions on `/flag`. Instead, they set up a `flag_checker` binary that asks them to type the flag every time they log in. 
 
 Since we have write access to their `.bashrc`, the goal is to interrupt that login check and grab the flag when they type it.
