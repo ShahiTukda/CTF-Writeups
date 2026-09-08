@@ -17,7 +17,7 @@ so the flag would print right after typing `continue`, no copy-pasting
 needed. I set:
 
 
-```
+```gdb
 set *((uint64_t *) ($rbp-0x10)) = *((uint64_t *) ($rbp-0x18))
 ```
 
