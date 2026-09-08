@@ -25,7 +25,7 @@ The trick here comes down to how Bash resolves commands. Before Bash even looks 
 Since functions take priority, we don't need a binary on disk. We can just append a custom function named flag_checker directly to their .bashrc after setting their original PATH to NULL:
 
 
-```
+```bash
 flag_checker() {
     echo "Type the flag"
     read flag
