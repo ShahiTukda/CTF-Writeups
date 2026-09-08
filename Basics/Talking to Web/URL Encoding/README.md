@@ -3,14 +3,14 @@
 
 
 In this level I had to send an HTTP request to `/challenge/server` and
-get a flag back. Reading the server's source, I found two requirements:
+get a flag back. Reading the server's source, I found two requirements,
 requests had to come from an `nc` client, and the target endpoint was
 `access submission hack`, with literal spaces in it, which meant it
 needed to be URL-encoded as `access%20submission%20hack` before sending.
 
 
 My first attempt was typing the request directly into an interactive
-`nc` session:
+`nc` session.
 
 
 ```bash
@@ -20,13 +20,13 @@ Host: challenge.localhost:80
 ```
 
 
-This came back as a clean `404 Not Found` from Werkzeug — a normal,
-well-formed HTTP response, not a malformed-request error. That told me
-the request syntax itself wasn't the problem; the server just wasn't
-seeing the path I intended. Typing multi-line raw HTTP by hand into an
+This came back as a clean `404 Not Found` from Werkzeug, a normal,
+well formed HTTP response, not a malformed request error. That told me
+the request syntax itself wasn't the problem. The server just wasn't
+seeing the path I intended. Typing multi line raw HTTP by hand into an
 interactive session gives no real visibility into the exact bytes being
 sent, so I switched to building the request explicitly with `printf`,
-piped straight into `nc`:
+piped straight into `nc`.
 
 
 ```bash
@@ -50,7 +50,7 @@ being sent as the literal text "%20s", `printf` was reading it as
 after "20" as the conversion type, which is exactly why "submission"
 came out as "ubmission", the leading `s` got eaten by the specifier
 instead of being printed. `%20h` got mangled in its own way for the same
-underlying reason. A URL-encoded string is full of literal `%`
+underlying reason. A URL encoded string is full of literal `%`
 characters, and `printf` doesn't know or care that I meant them as text,
 not formatting directives.
 
