@@ -1,3 +1,7 @@
+## FORK BOMB
+
+
+
 In this level I had to fork bomb the system spawn processes faster than the kernel could handle until the box choked. `/challenge/check` verifies the system is actually bombed and hands over the flag.
 
 My first idea was to find something that spawns processes quickly and just pile them up. I tried:
