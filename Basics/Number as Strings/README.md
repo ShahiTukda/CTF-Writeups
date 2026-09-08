@@ -25,7 +25,7 @@ read from.
 The fix was to actually allocate somewhere for it to write:
 
 
-```
+```asm
 sub rsp, 32      ; carve out 32 bytes of real stack space
 mov rsi, rsp      ; point rsi at that buffer before calling itoa
 ```
