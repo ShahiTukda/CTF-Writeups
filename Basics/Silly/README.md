@@ -22,15 +22,13 @@ The trick here comes down to how Bash resolves commands. Before Bash even looks 
 Since functions take priority, we don't need a binary on disk. We can just append a custom function named flag_checker directly to their .bashrc after setting their original PATH to NULL:
 
 
+```
 flag_checker() {
-
     echo "Type the flag"
-    
     read flag
-    
     echo $flag
-    
 }
+```
 
 
 When the victim logs in and the script calls flag_checker, Bash executes our shell function instead of searching $PATH for the real executable. It prompts them for the flag, grabs the input, and spits it right back out to us.
