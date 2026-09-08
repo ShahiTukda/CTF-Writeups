@@ -10,7 +10,7 @@ stack at `[rsp+0x40]`, and the job was to read it from there and get
 
 My first attempt used:
 
-```
+```asm
 mov rsi, [rsp+0x40]
 ```
 
@@ -35,7 +35,7 @@ that "address" happened to point, not from the flag.
 What I actually needed was the address of that stack location, not its
 contents — so I switched to `lea`:
 
-```
+```asm
 lea rsi, [rsp+0x40]
 ```
 
