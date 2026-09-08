@@ -1,0 +1,24 @@
+In this challenge, the target stopped leaving `read` permissions on `/flag`. Instead, they set up a `flag_checker` binary that asks them to type the flag every time they log in. 
+
+Since we have write access to their `.bashrc`, the goal is to interrupt that login check and grab the flag when they type it.
+
+What Didn't Work: `$PATH` Hijacking
+
+My initial plan was to override the victim's `$PATH` inside `.bashrc` so it pointed to a fake `flag_checker` binary sitting in my home directory. 
+
+That immediately hit an error:
+this file is not owned by root
+
+The system checks binary ownership, so pointing $PATH to an unprivileged binary in my user directory was a dead end.
+
+What Did Work: Writing in Bash Function 
+
+The trick here comes down to how Bash resolves commands. Before Bash even looks at $PATH to find a binary, it checks for active shell functions.
+
+Since functions take priority, we don't need a binary on disk. We can just append a custom function named flag_checker directly to their .bashrc after setting their original PATH to NULL:
+flag_checker() {
+    echo "Type the flag"
+    read flag
+    echo $flag
+}
+When the victim logs in and the script calls flag_checker, Bash executes our shell function instead of searching $PATH for the real executable. It prompts them for the flag, grabs the input, and spits it right back out to us.
