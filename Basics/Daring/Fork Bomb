@@ -1,0 +1,25 @@
+In this level I had to fork bomb the system spawn processes faster than the kernel could handle until the box choked. `/challenge/check` verifies the system is actually bombed and hands over the flag.
+
+My first idea was to find something that spawns processes quickly and just pile them up. I tried:
+
+sleep 0
+sleep 0
+bash smol.sh &
+bash smol.sh &
+
+and variations like piping sleeps together. None of it worked. I ended up with a bunch of processes making the terminal lag, but the system never actually went down.
+
+Turns out the problem wasn't the command, it was the growth pattern. Every `sleep 0` I ran was one more process, created one at a time, at however fast I could type or loop. That's linear growth — the kernel can spawn and reap processes way faster than a human (or a small script) can churn out `sleep` calls, so the process table never gets close to overwhelmed.
+
+What actually works is a function that calls itself twice and backgrounds each call so it returns immediately:
+
+a() {
+a | a &
+}
+a
+bash smol.sh &
+bash smol.sh &
+
+This is exponential instead of linear. Every call to `a` spawns two more copies of itself, and because of `&` it doesn't wait around — it just keeps forking. 1 becomes 2, 2 becomes 4, 4 becomes 8, and so on, all happening as fast as the kernel can process fork() calls, with nothing throttling it. That curve overwhelms the process table almost instantly, which is why this froze the system immediately while the sleep approach just sat there lagging.
+
+Ran it, system fork bombed, `/challenge/check` gave up the flag.
