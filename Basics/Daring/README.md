@@ -7,7 +7,7 @@ In this level I had to fork bomb the system spawn processes faster than the kern
 My first idea was to find something that spawns processes quickly and just pile them up. I tried:
 
 
-```
+```bash
 sleep 0
 sleep 0
 bash smol.sh &
@@ -23,7 +23,7 @@ Turns out the problem wasn't the command, it was the growth pattern. Every `slee
 What actually works is a function that calls itself twice and backgrounds each call so it returns immediately:
 
 
-```
+```bash
 a() {
 a | a &
 }
