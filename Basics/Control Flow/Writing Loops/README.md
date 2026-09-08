@@ -22,7 +22,7 @@ incremented it on every iteration where the current byte wasn't the null
 terminator:
 
 
-```
+```asm
 mov rdx, 0
 mov rdi, [rsp+16]
 loop:
