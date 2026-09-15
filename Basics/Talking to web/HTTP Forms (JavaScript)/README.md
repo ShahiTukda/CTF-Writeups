@@ -1,4 +1,4 @@
-# HTTP Forms (JavaScript)
+# HTTP FORMS (JAVASCRIPT)
 
 
 In this level I had to use `fetch()` to make a POST request to `/challenge/server` with the necessary form parameters, and then get the response back out to myself. After reading up on how to pass advanced arguments to `fetch()`, specifically the options object that lets you set the method and the request body, I took on the challenge.
@@ -70,9 +70,3 @@ Two things changed here. `method: "POST"` makes the request match the route, and
 
 This resulted in giving me the base64 encoded flag (because of `btoa(data)`). After decoding it using `base64 -d` I was able to solve the challenge.
 
-## Takeaways
-
-- `flask.request.form` and `flask.request.args` are not interchangeable — form is the POST body, args is the query string. Putting the right values in the wrong place fails the same way as putting the wrong values in.
-- A `405` in the log is a routing/method problem, not a parameter problem. It tells you the request never got far enough to be checked.
-- Passing `URLSearchParams` as a `fetch()` body handles the `Content-Type` header for you, which is what makes the server read it as form data.
-- Leaking a response through a query string on a path you control is a general technique, not a one-off. Base64-encoding it first keeps the payload from being mangled by the URL.
