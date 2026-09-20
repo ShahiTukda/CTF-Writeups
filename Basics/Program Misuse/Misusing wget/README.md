@@ -1,3 +1,6 @@
+# MISUSING WGET
+
+
 In this level, I had escalated privileges on the command wget and had to use it to read the flag. wget wasn't built to let you read arbitrary files by itself, but with the right flags, it turned out to be entirely possible.
 
 My first method was to write my own web server in assembly, listening on port 1337, built from socket, bind, listen, accept, open, read, and write. I ran that in one terminal, and in another ran:
