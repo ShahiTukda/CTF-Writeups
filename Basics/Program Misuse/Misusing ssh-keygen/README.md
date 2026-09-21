@@ -1,4 +1,4 @@
-## MISUSING SSH-KEYGEN
+# MISUSING SSH-KEYGEN
 
 In this level I had escalated privileges to the command ssh-keygen and had to use it to read the flag file. The command ssh-keygen by itself can never 'read' a normal file in the regular sense. I tried using different flags to read the file but they all had similar errors like,
 
