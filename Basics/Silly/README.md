@@ -1,4 +1,4 @@
-## BASH FUNCTION HIJACKING 
+# BASH FUNCTION HIJACKING 
 
 
 In this challenge, the target stopped leaving `read` permissions on `/flag`. Instead, they set up a `flag_checker` binary that asks them to type the flag every time they log in. 
