@@ -1,3 +1,6 @@
+# SQL INJECTION
+
+
 In this level the goal was SQL injection again, but with a twist: this one was blind. Normally SQLi lets you pull data straight back — through a UNION query, an error message, something visible. Here, none of that existed. The server would never print the flag, or the password, or anything resembling database output. All I'd ever get back was a page and a status code, so any information I extracted would have to come from *inferring* something indirect, not reading it directly. 
 
 For the first while I had basically no plan. I threw the usual SQLi patterns at it — the kind that would normally dump a table or bypass a login outright — and predictably got nowhere, because none of them were built for a target that gives you no output channel at all. 
