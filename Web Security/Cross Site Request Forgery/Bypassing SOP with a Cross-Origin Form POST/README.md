@@ -60,7 +60,6 @@ class AutoSubmitHandler(BaseHTTPRequestHandler):
 </head>
 <body>
     <form id="autoForm" action="http://challenge.localhost/publish" method="POST">
-        <!-- Add any inputs here if your POST request requires fields -->
     </form>
     <script>
         window.addEventListener('DOMContentLoaded', (event) => {
