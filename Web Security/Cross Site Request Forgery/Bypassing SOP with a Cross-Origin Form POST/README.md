@@ -63,7 +63,6 @@ class AutoSubmitHandler(BaseHTTPRequestHandler):
         <!-- Add any inputs here if your POST request requires fields -->
     </form>
     <script>
-        // Automatically submit the form as soon as the page loads
         window.addEventListener('DOMContentLoaded', (event) => {
             document.getElementById('autoForm').submit();
         });
